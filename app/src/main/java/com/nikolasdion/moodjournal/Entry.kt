@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 data class Entry (@PrimaryKey(autoGenerate = true) val id : Int = 0,
                   @ColumnInfo(name = "date") val date : Long,
                   @ColumnInfo(name = "trigger") val trigger : String,
-                  @ColumnInfo(name = "thoughts") val thoughts : List<String>,
-                  @ColumnInfo(name = "feelings") val feelings : List<String>,
-                  @ColumnInfo(name = "physical") val physical : List<String>,
-                  @ColumnInfo(name = "behaviour") val behaviour : List<String>,
+                  @ColumnInfo(name = "thoughts") val thoughts : String,
+                  @ColumnInfo(name = "feelings") val feelings : String,
+                  @ColumnInfo(name = "physical") val physical : String,
+                  @ColumnInfo(name = "behaviour") val behaviour : String,
                   @ColumnInfo(name = "notes") val notes : String)

@@ -6,16 +6,16 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [Entry::class], version = 1)
-abstract class EntryDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
     abstract fun entryDao(): EntryDao
 
     companion object {
         @Volatile
-        private var instance : EntryDatabase? = null
+        private var instance : AppDatabase? = null
 
-        fun getEntryDatabase(context : Context) : EntryDatabase {
+        fun getDatabase(context : Context) : AppDatabase {
             return instance ?: synchronized(this) {
-                Room.databaseBuilder(context, EntryDatabase::class.java, "entry-db").build()
+                Room.databaseBuilder(context, AppDatabase::class.java, "entry-db").build()
             }
         }
     }

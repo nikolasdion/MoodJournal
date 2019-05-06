@@ -4,13 +4,27 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var entryListViewModel : EntryListViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        entryListViewModel = ViewModelProviders.of(this).get(EntryListViewModel::class.java)
+
+        entryListViewModel.allEntries.observe(this, Observer { entries ->
+            run {
+                updateEntries(entries)
+            }
+        })
+
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
@@ -34,5 +48,9 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun updateEntries(entries : List<Entry>) {
+        // TODO
     }
 }
