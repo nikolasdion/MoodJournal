@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">MoodJournal</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Hint texts for text fields for entries -->
+    <string name="trigger_hint_text">Trigger</string>
+    <string name="thoughts_hint_text">Thoughts</string>
+    <string name="feelings_hint_text">Feelings</string>
+    <string name="physical_hint_text">Physical sensations</string>
+    <string name="behaviour_hint_text">Behaviours</string>
+    <string name="notes_hint_text">Notes</string>
+    <string name="save_button">Save</string>
+
 </resources>

@@ -1,7 +1,6 @@
 package com.nikolasdion.moodjournal.dummy
 
 import com.nikolasdion.moodjournal.Entry
-import java.sql.Time
 import java.util.*
 
 /**
@@ -27,9 +26,9 @@ object DummyContent {
     }
 
     private fun createDummyItem(position: Int): Entry {
-        return Entry(position,
-            Date().time,
-            "Trigger",
+        return Entry(0,
+            System.currentTimeMillis() + position*10000,
+            "Trigger $position",
             "Thoughts",
             "Feelings",
             "Physical",

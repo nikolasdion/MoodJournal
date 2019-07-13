@@ -12,6 +12,9 @@ interface EntryDao {
     @Query("SELECT * from entry_table order by date desc")
     fun getAllEntries() : LiveData<List<Entry>>
 
+    @Query("SELECT * from entry_table WHERE id = :entryId")
+    fun getEntry(entryId: Int) : LiveData<Entry>
+
     @Insert
     suspend fun insert(event: Entry)
 

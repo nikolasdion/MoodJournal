@@ -12,6 +12,10 @@ class EntryRepository private constructor(private val entryDao: EntryDao) {
         entryDao.insert(entry)
     }
 
+    fun getEntryFromId(id: Int) {
+        entryDao.getEntry(id)
+    }
+
     companion object {
         @Volatile
         private var instance: EntryRepository? = null

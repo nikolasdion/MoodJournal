@@ -31,6 +31,10 @@ class EntryListViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
+    fun getEntryFromId(id: Int) {
+        repository.getEntryFromId(id)
+    }
+
     override fun onCleared() {
         super.onCleared()
         job.cancel()

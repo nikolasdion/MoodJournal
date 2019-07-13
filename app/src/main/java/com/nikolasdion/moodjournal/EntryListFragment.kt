@@ -9,7 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.nikolasdion.moodjournal.dummy.DummyContent
+import androidx.navigation.findNavController
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /**
  * A fragment representing a list of [Entry].
@@ -24,15 +25,12 @@ class EntryListFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_entry_list, container, false)
         val adapter = EntryAdapter()
 
-        // Populate with dummy content
-        for(item in DummyContent.ITEMS)
-        {
-            viewModel.insert(item)
-        }
+        val recyclerView = view.findViewById<RecyclerView>(R.id.list)
+        val fab = view.findViewById<FloatingActionButton>(R.id.fab)
 
         // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
+        if (recyclerView is RecyclerView) {
+            with(recyclerView) {
                 layoutManager = LinearLayoutManager(context)
                 this.adapter = adapter
             }
@@ -44,6 +42,10 @@ class EntryListFragment : Fragment() {
                 adapter.submitList(entries)
             }
         })
+
+        fab.setOnClickListener {
+            it.findNavController().navigate(R.id.action_entryListFragment_to_editEntryFragment, null)
+        }
 
         return view
     }

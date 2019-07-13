@@ -1,10 +1,12 @@
 package com.nikolasdion.moodjournal
 
+import android.text.format.DateFormat
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
@@ -22,8 +24,16 @@ class EntryAdapter : ListAdapter<Entry, EntryAdapter.ViewHolder>(EntryDiffCallba
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entry = getItem(position)
-        holder.dateView.text = entry.date.toString()
+        holder.dateView.text = DateFormat.format("yyyy-MM-dd hh:mm:ss", entry.date)
         holder.triggerView.text = entry.trigger
+        holder.itemView.setOnClickListener(createOnClickListener(entry.id))
+    }
+
+    private fun createOnClickListener(id: Int): View.OnClickListener {
+        return View.OnClickListener {
+            val navController = it.findNavController()
+            navController.navigate(R.id.action_entryListFragment_to_editEntryFragment)
+        }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
