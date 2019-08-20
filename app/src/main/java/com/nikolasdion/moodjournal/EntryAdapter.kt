@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.ListAdapter
 
 import kotlinx.android.synthetic.main.fragment_entry.view.*
 import android.os.Bundle
+import com.nikolasdion.moodjournal.util.Logger
 
 /**
  * [ListAdapter] that can display a list of [Entry].
  */
 class EntryAdapter : ListAdapter<Entry, EntryAdapter.EntryViewHolder>(EntryDiffCallback()) {
+
+    private val log = Logger(this::class.java.simpleName)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_entry, parent, false)
@@ -27,11 +30,11 @@ class EntryAdapter : ListAdapter<Entry, EntryAdapter.EntryViewHolder>(EntryDiffC
         holder.itemView.date.text = DateFormat.format("yyyy-MM-dd hh:mm:ss", entry.date)
         holder.itemView.trigger.text = entry.trigger
         holder.itemView.setOnClickListener(createOnClickListener(entry.id))
-        println("Draw View for entry: $entry")
+        log.i("Draw View for entry: $entry")
     }
 
     private fun createOnClickListener(entryId: Int): View.OnClickListener {
-        println("Selected entry with ID: $entryId")
+        log.i("User selected entry with ID: $entryId")
 
         return View.OnClickListener {
             val navController = it.findNavController()

@@ -1,6 +1,7 @@
 package com.nikolasdion.moodjournal
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -9,12 +10,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import com.nikolasdion.moodjournal.util.Logger
 import kotlinx.android.synthetic.main.fragment_entry_list.*
 
 /**
  * A fragment representing a list of [Entry].
  */
 class EntryListFragment : Fragment() {
+    private val log = Logger(this::class.java.simpleName)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,11 +37,13 @@ class EntryListFragment : Fragment() {
         // Change the list in the adapter is the data changes.
         viewModel.allEntries.observe(this, Observer { entries ->
             run {
+                log.i("Entries updated to: $entries")
                 adapter.submitList(entries)
             }
         })
 
         fab.setOnClickListener {
+            log.i("Clicked FAB to create new entry")
             it.findNavController().navigate(R.id.action_entryListFragment_to_editEntryFragment, null)
         }
 
