@@ -31,8 +31,14 @@ class EntryListViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
-    fun getEntryFromId(id: Int) {
-        repository.getEntryFromId(id)
+    fun update(entry: Entry) {
+        uiScope.launch(Dispatchers.IO) {
+            repository.update(entry)
+        }
+    }
+
+    fun getEntryFromId(id: Int): LiveData<Entry> {
+        return repository.getEntryFromId(id)
     }
 
     override fun onCleared() {

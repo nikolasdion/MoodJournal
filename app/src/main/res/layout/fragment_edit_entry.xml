@@ -7,12 +7,12 @@
     tools:context=".EditEntryFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/trigger_text_field"
+        android:id="@+id/triggerTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/trigger_hint_text"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/thoughts_text_field">
+        app:layout_constraintBottom_toTopOf="@+id/thoughtsTextField">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -21,12 +21,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/thoughts_text_field"
+        android:id="@+id/thoughtsTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/thoughts_hint_text"
-        app:layout_constraintTop_toBottomOf="@+id/trigger_text_field"
-        app:layout_constraintBottom_toTopOf="@+id/feelings_text_field">
+        app:layout_constraintTop_toBottomOf="@+id/triggerTextField"
+        app:layout_constraintBottom_toTopOf="@+id/feelingsTextField">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -35,12 +35,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/feelings_text_field"
+        android:id="@+id/feelingsTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/feelings_hint_text"
-        app:layout_constraintTop_toBottomOf="@+id/thoughts_text_field"
-        app:layout_constraintBottom_toTopOf="@+id/physical_text_field">
+        app:layout_constraintTop_toBottomOf="@+id/thoughtsTextField"
+        app:layout_constraintBottom_toTopOf="@+id/physicalTextField">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -49,12 +49,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/physical_text_field"
+        android:id="@+id/physicalTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/physical_hint_text"
-        app:layout_constraintTop_toBottomOf="@+id/feelings_text_field"
-        app:layout_constraintBottom_toTopOf="@+id/behaviour_text_field">
+        app:layout_constraintTop_toBottomOf="@+id/feelingsTextField"
+        app:layout_constraintBottom_toTopOf="@+id/behaviourTextField">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -64,12 +64,12 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/behaviour_text_field"
+        android:id="@+id/behaviourTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/behaviour_hint_text"
-        app:layout_constraintTop_toBottomOf="@id/physical_text_field"
-        app:layout_constraintBottom_toTopOf="@id/notes_text_field">
+        app:layout_constraintTop_toBottomOf="@id/physicalTextField"
+        app:layout_constraintBottom_toTopOf="@id/notesTextField">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -78,12 +78,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/notes_text_field"
+        android:id="@+id/notesTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/notes_hint_text"
-        app:layout_constraintTop_toBottomOf="@id/behaviour_text_field"
-        app:layout_constraintBottom_toTopOf="@id/entry_save_button">
+        app:layout_constraintTop_toBottomOf="@id/behaviourTextField"
+        app:layout_constraintBottom_toTopOf="@id/entrySaveButton">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -92,11 +92,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/entry_save_button"
+        android:id="@+id/entrySaveButton"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save_button"
-        app:layout_constraintTop_toBottomOf="@id/behaviour_text_field"/>
+        app:layout_constraintTop_toBottomOf="@id/behaviourTextField"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

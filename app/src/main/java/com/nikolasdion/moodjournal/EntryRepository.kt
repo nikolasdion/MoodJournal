@@ -12,8 +12,13 @@ class EntryRepository private constructor(private val entryDao: EntryDao) {
         entryDao.insert(entry)
     }
 
-    fun getEntryFromId(id: Int) {
-        entryDao.getEntry(id)
+    @WorkerThread
+    suspend fun update(entry : Entry) {
+        entryDao.update(entry)
+    }
+
+    fun getEntryFromId(id: Int): LiveData<Entry> {
+        return entryDao.getEntry(id)
     }
 
     companion object {
