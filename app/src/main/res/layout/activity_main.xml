@@ -6,21 +6,20 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:theme="@style/AppTheme"
         tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:layout_width="match_parent">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:title="@string/entries_toolbar_title"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                app:title="@string/entries_toolbar_title"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
