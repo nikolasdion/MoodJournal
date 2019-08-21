@@ -30,7 +30,7 @@ class EntryAdapter : ListAdapter<Entry, EntryAdapter.EntryViewHolder>(EntryDiffC
         holder.itemView.date.text = DateFormat.format("yyyy-MM-dd hh:mm:ss", entry.date)
         holder.itemView.trigger.text = entry.trigger
         holder.itemView.setOnClickListener(createOnClickListener(entry.id))
-        log.i("Draw View for entry: $entry")
+        log.d("Draw View for entry: $entry")
     }
 
     private fun createOnClickListener(entryId: Int): View.OnClickListener {

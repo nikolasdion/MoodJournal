@@ -10,5 +10,6 @@
     <string name="behaviour_hint_text">Behaviours</string>
     <string name="notes_hint_text">Notes</string>
     <string name="save_button">Save</string>
+    <string name="entries_toolbar_title">All Entries</string>
 
 </resources>

@@ -1,16 +1,17 @@
 package com.nikolasdion.moodjournal
 
 import android.app.Activity
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.nikolasdion.moodjournal.util.Logger
 import kotlinx.android.synthetic.main.fragment_edit_entry.*
+import kotlinx.android.synthetic.main.fragment_edit_entry.view.*
 
 const val ARG_ENTRY_ID = "entry_id"
 
@@ -24,13 +25,14 @@ const val ARG_ENTRY_ID = "entry_id"
  *
  */
 class EditEntryFragment : Fragment() {
+    private val log = Logger(this::class.java.simpleName)
     private var entryId: Int? = null
     private lateinit var viewModel: EntryListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         entryId = arguments?.getInt(ARG_ENTRY_ID)
-        println("CCCCC" + entryId)
+        log.i("Create EditEntryFragment with entry ID: $entryId")
         viewModel = ViewModelProviders.of(this).get(EntryListViewModel::class.java)
     }
 
@@ -41,7 +43,7 @@ class EditEntryFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_edit_entry, container, false)
 
-        entrySaveButton.setOnClickListener { onSaveButtonPressed() }
+        view.entrySaveButton.setOnClickListener { onSaveButtonPressed() }
 
         return view
     }
@@ -49,23 +51,27 @@ class EditEntryFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        entryId?.let {
-            val entry = viewModel.getEntryFromId(it).value
+        log.i("onResume, entry ID: $entryId")
 
-            println("BBBB" + viewModel.getEntryFromId(it))
+        entryId?.let { id ->
+            val entry = viewModel.getEntryFromId(id)
 
-            println("BBBBBBBBBBBBB" + entry.toString())
-
-            triggerTextField.editText?.setText(entry?.trigger)
-            thoughtsTextField.editText?.setText(entry?.thoughts)
-            feelingsTextField.editText?.setText(entry?.feelings)
-            physicalTextField.editText?.setText(entry?.physical)
-            behaviourTextField.editText?.setText(entry?.behaviour)
-            notesTextField.editText?.setText(entry?.notes)
+            entry.observe(this, Observer<Entry> { entry ->
+                log.i("Entry fetched: $entry")
+                triggerTextField.editText?.setText(entry.trigger)
+                thoughtsTextField.editText?.setText(entry.thoughts)
+                feelingsTextField.editText?.setText(entry.feelings)
+                physicalTextField.editText?.setText(entry.physical)
+                behaviourTextField.editText?.setText(entry.behaviour)
+                notesTextField.editText?.setText(entry.notes)
+            }
+            )
         }
     }
 
     private fun onSaveButtonPressed() {
+        log.i("User pressed save button")
+
         val entryIdToSave = entryId?: 0
 
         val newEntry = Entry(entryIdToSave,
@@ -77,7 +83,7 @@ class EditEntryFragment : Fragment() {
             behaviourTextField.editText?.text.toString(),
             notesTextField.editText?.text.toString())
 
-        println("BBBBBB" + newEntry.toString())
+        log.i("Entry to be saved: $newEntry")
 
         if (entryId != null) {
             viewModel.update(newEntry)
@@ -90,6 +96,7 @@ class EditEntryFragment : Fragment() {
         val inputMethodManager = activity?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
 
+        // Don't need to use navigation, just pop the back stack,
         fragmentManager?.popBackStack()
     }
 

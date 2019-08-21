@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.nikolasdion.moodjournal.util.Logger
 import kotlinx.android.synthetic.main.fragment_entry_list.*
+import kotlinx.android.synthetic.main.fragment_entry_list.view.*
 
 /**
  * A fragment representing a list of [Entry].
@@ -29,7 +30,7 @@ class EntryListFragment : Fragment() {
         val adapter = EntryAdapter()
 
         // Set the adapter
-        entryListRecyclerView.apply{
+        view.entryListRecyclerView.apply{
             this.layoutManager = LinearLayoutManager(context)
             this.adapter = adapter
         }
@@ -42,7 +43,7 @@ class EntryListFragment : Fragment() {
             }
         })
 
-        fab.setOnClickListener {
+        view.fab.setOnClickListener {
             log.i("Clicked FAB to create new entry")
             it.findNavController().navigate(R.id.action_entryListFragment_to_editEntryFragment, null)
         }
